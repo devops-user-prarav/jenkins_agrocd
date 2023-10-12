@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'prarav/maven-plus-docker'
+      image 'chaitannyaa/maven-plus-docker'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
@@ -25,7 +25,7 @@ pipeline {
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "prarav/java_awesome-cicd:${BUILD_NUMBER}"
-        REGISTRY_CREDENTIALS = credentials('dockerHub')
+        REGISTRY_CREDENTIALS = credentials('dockerhub')
       }
       steps {
         script {
